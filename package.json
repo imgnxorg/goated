@@ -3,14 +3,23 @@
   "packageManager": "yarn@4.6.0",
   "type": "module",
   "scripts": {
-    "oneshot": "node src/standalone.js"
+    "oneshot": "node src/standalone.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "build": "tsc --outDir out",
+    "build:watch": "tsc --outDir out --watch",
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --passWithNoTests --watch",
+    "test:coverage": "jest --passWithNoTests --coverage",
+    "test:coverage:watch": "jest --passWithNoTests --coverage --watch",
+    "test:coverage:report": "jest --passWithNoTests --coverage --reporters=default --reporters=jest-junit",
+    "test:coverage:report:watch": "jest --passWithNoTests --coverage --reporters=default --reporters=jest-junit --watch",
+    "test:coverage:report:ci": "jest --passWithNoTests --coverage --reporters=default --reporters=jest-junit --ci",
+    "test:coverage:report:ci:watch": "jest --passWithNoTests --coverage --reporters=default --reporters=jest-junit --ci --watch",
+    "test:coverage:report:ci:watch:all": "jest --passWithNoTests --coverage --reporters=default --reporters=jest-junit --ci --watchAll"
   },
   "dependencies": {
-    "@tonejs/midi": "^2.0.28",
-    "node-wav": "^0.0.2",
-    "react": "^19.1.0",
-    "wav-decoder": "^1.3.0",
-    "wav-encoder": "^1.3.0"
+    "react": "^19.1.0"
   },
   "version": "1.0.0",
   "description": "",
@@ -20,13 +29,19 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
+    "@tonejs/midi": "^2.0.28",
+    "@types/naudiodon": "^2.2.5",
     "@types/node": "^22.13.17",
     "@types/react": "^19",
     "eslint": "^9.23.0",
     "eslint-plugin-react": "^7.37.4",
     "globals": "^16.0.0",
+    "naudiodon": "^2.3.6",
+    "node-wav": "^0.0.2",
     "typescript": "^5.8.2",
-    "typescript-eslint": "^8.29.0"
+    "typescript-eslint": "^8.29.0",
+    "wav-decoder": "^1.3.0",
+    "wav-encoder": "^1.3.0"
   },
   "author": "",
   "license": "ISC"

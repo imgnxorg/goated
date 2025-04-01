@@ -1,3 +1,5 @@
+//#!/usr/bin/env node
+
 import { defineConfig } from "eslint/config";
 import globals from "globals";
 import js from "@eslint/js";
@@ -6,8 +8,8 @@ import pluginReact from "eslint-plugin-react";
 
 export default defineConfig([
   {
-  linterOptions: {
-      noUndefined: "warn",
+    linterOptions: {
+      reportUnusedInlineConfigs: "error",
     },
   },
   // prettier-ignore

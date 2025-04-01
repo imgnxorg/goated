@@ -1,40 +1,34 @@
 #!/usr/bin/env node
 
-import { executionAsyncResource } from "async_hooks";
+export const createStore = (initialState: object | string) => {
+  let value = initialState;
+
+  return Object.freeze({
+    get() {
+      return value;
+    },
+    set(newValue) {
+      value = newValue;
+      return value;
+    },
+    get value() {
+      return value;
+    },
+  });
+};
 
 const store = createStore({
-    
-  executor: process?.argv?.[0],
-  script: process?.argv?.[1],
+  executor: globalThis.process?.argv?.[0],
+  script: globalThis.process?.argv?.[1],
   type: "unknown",
-  environment: process?.env?.SHELL || "",
-  runtime: process?.env?.RUNTIME || "",
-  version: process?.env?.VERSION || "",
+  environment: globalThis.process?.env?.SHELL || "",
+  runtime: globalThis.process?.env?.RUNTIME || "",
+  version: globalThis.process?.env?.VERSION || "",
   directRun: false,
-}) {
-
-  
-
-  function createStore(initialState) {
-    let value = initialState;
-
-    return Object.freeze({
-      get() {
-        return value;
-      },
-      set(newValue) {
-        value = Object.assign({}, value, newValue);
-        return value;
-      },
-      get value() {
-        return value;
-      },
-    })
-  })};
-
+});
 
 const detectRuntime = (variable) => {
-  const control = process.argv.slice(0),
+  const control = globalThis.process.argv.slice(0),
     args = variable ? variable : control;
 
   switch (true) {
@@ -44,19 +38,14 @@ const detectRuntime = (variable) => {
         runtime: "node",
       });
 
-    cas
-    
-    
-    
-    
-     import?.meta?.url === `file://${args[1]}`:
+    case globalThis.import.meta.url === `file://${args[1]}`:
       return Object.freeze({
         ...store,
         directRun: true,
         runtime: "direct",
       });
 
-    case process.title === "node":
+    case globalThis.process.title === "node":
       return Object.freeze({
         ...store,
         runtime: "node-process",
@@ -78,7 +67,7 @@ const detectRuntime = (variable) => {
 
 const shift = (variable) => {
   console.log("shift.js");
-  const control = process.argv.slice(0),
+  const control = globalThis.process.argv.slice(0),
     args = variable ? variable : control;
   console.log("args", args);
 
