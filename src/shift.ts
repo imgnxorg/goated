@@ -1,22 +1,9 @@
 #!/usr/bin/env node
 
-export const createStore = (initialState) => {
-  const value = initialState ? initialState : null;
-
-  return Object.freeze({
-    get() {
-      return value;
-    },
-    set(newValue) {
-      return Object.assign({}, newValue);
-    },
-    get value() {
-      return value;
-    },
-  });
-};
+import { executionAsyncResource } from "async_hooks";
 
 const store = createStore({
+    
   executor: process?.argv?.[0],
   script: process?.argv?.[1],
   type: "unknown",
@@ -24,7 +11,27 @@ const store = createStore({
   runtime: process?.env?.RUNTIME || "",
   version: process?.env?.VERSION || "",
   directRun: false,
-});
+}) {
+
+  
+
+  function createStore(initialState) {
+    let value = initialState;
+
+    return Object.freeze({
+      get() {
+        return value;
+      },
+      set(newValue) {
+        value = Object.assign({}, value, newValue);
+        return value;
+      },
+      get value() {
+        return value;
+      },
+    })
+  })};
+
 
 const detectRuntime = (variable) => {
   const control = process.argv.slice(0),
@@ -42,7 +49,7 @@ const detectRuntime = (variable) => {
     
     
     
-    e import?.meta?.url === `file://${args[1]}`:
+     import?.meta?.url === `file://${args[1]}`:
       return Object.freeze({
         ...store,
         directRun: true,

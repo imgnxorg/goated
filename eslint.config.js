@@ -2,11 +2,11 @@ import { defineConfig } from "eslint/config";
 import globals from "globals";
 import js from "@eslint/js";
 import tseslint from "typescript-eslint";
-import pluginReact, { rules } from "eslint-plugin-react";
+import pluginReact from "eslint-plugin-react";
 
 export default defineConfig([
   {
-    linterOptions: {
+  linterOptions: {
       noUndefined: "warn",
     },
   },

@@ -3,7 +3,7 @@
   "packageManager": "yarn@4.6.0",
   "type": "module",
   "scripts": {
-    "run": "node src/standalone.js"
+    "oneshot": "node src/standalone.js"
   },
   "dependencies": {
     "@tonejs/midi": "^2.0.28",
