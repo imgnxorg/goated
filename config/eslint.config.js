@@ -23,4 +23,24 @@ export default defineConfig([
   // prettier-ignore
   pluginReact.configs.flat.recommended,
   // Removed the misplaced 'lib' property as it is not valid in this context
+  {
+    env: {
+      node: true,
+      browser: true,
+    },
+    overrides: [
+      {
+        files: ["main.js", "preload.js"],
+        env: {
+          node: true,
+        },
+      },
+      {
+        files: ["renderer.js"],
+        env: {
+          browser: true,
+        },
+      },
+    ],
+  },
 ]);
